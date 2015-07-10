@@ -251,10 +251,6 @@
         }
         this._length -= 1;
 
-        if (isHead || isTail || this._isCircular) {
-          this.makeCircular();
-        }
-
         return node.data;
       }
 

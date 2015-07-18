@@ -101,6 +101,37 @@
       return this;
     },
 
+    addAt: function(data, index){
+      var foundNode = this._getAt(index);
+
+      if ( foundNode ) {
+        var node = new Node(data);
+        if(index == 0){
+          var head = this._head
+          node.next = head
+          head.previous = node
+          this._head = node
+        }else{
+          var prevNode = foundNode.previous
+          prevNode.next = node
+          node.next = foundNode
+          node.previous = prevNode
+          foundNode.previous = node
+        }
+      } else {
+        return this
+      }
+
+      this._length += 1;
+      return this;
+    },
+
+    addArrayAt: function(dataArray, index){
+      dataArray.forEach(function(data){
+        this.addAt(data, index++);
+      }, this);
+    },
+
     getAt: function (index) {
       var
         node = this._getAt(index);
